@@ -1,0 +1,36 @@
+﻿<Window x:Class="Example14Wpf.GridWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Example14Wpf"
+        mc:Ignorable="d"
+        Title="Grid Panel" Height="450" Width="800" Closing="Window_Closing">
+ 
+        <Grid  Background="AliceBlue">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Height="24" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Text="Time"  Width="83" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="-0.527,1.051"/>
+            <TextBox Height="24"  Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="09.00"  Width="99" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBlock Height="24" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Text="Itenary"  Width="83" RenderTransformOrigin="-0.527,1.051" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBox Height="24"  Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="Naiper musum"  Width="99" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            <TextBlock Height="24"  Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Text="Description"  Width="83" RenderTransformOrigin="-0.527,1.051" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBox Height="52"  Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="adjvfhgjeacahbchjbajdbwbajdb"  Width="99" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBlock Height="24"  Grid.Row="3" Grid.Column="0"  TextWrapping="Wrap" Text="Price"  Width="83" RenderTransformOrigin="-0.527,1.051" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBox Height="24"  Grid.Row="3" Grid.Column="1"  TextWrapping="Wrap" Text="RS 20"  Width="99" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            <Button Content="Create Itenary" Height="37"  Grid.Row="4" Grid.Column="1"   Width="166" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+        </Grid>
+
+       
+  
+</Window>
