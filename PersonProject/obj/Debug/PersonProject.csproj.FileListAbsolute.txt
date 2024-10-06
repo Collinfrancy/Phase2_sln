@@ -1,0 +1,17 @@
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\PersonProject.csproj.AssemblyReference.cache
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\DisplayPersonWindow.g.cs
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\EditPersonWindow.g.cs
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\App.g.cs
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\PersonProject_MarkupCompile.cache
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\PersonProject_MarkupCompile.lref
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\bin\Debug\PersonProject.exe.config
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\bin\Debug\PersonProject.exe
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\bin\Debug\PersonProject.pdb
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\DisplayPersonWindow.baml
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\EditPersonWindow.baml
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\PersonProject.g.resources
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\PersonProject.Properties.Resources.resources
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\PersonProject.csproj.GenerateResource.cache
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\PersonProject.csproj.CoreCompileInputs.cache
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\PersonProject.exe
+C:\Users\2021489\source\repos\WpfItenerySoluion\PersonProject\obj\Debug\PersonProject.pdb
