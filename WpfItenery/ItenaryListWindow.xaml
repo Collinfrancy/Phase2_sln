@@ -1,0 +1,26 @@
+﻿<Window x:Class="WpfItenery.ItenaryListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfItenery"
+        mc:Ignorable="d"
+        Title="Iternary App" Height="450" Width="800" Closed="Window_Closed">
+    <Grid>
+        <Button x:Name="btnNewItenary" Content="New Itenary" HorizontalAlignment="Left" Height="52" Margin="94,24,0,0" VerticalAlignment="Top" Width="162" Click="btnNewItenary_Click"/>
+        <Button x:Name="btnEditIternary" Content="Edit Iternary" HorizontalAlignment="Left" Height="34" Margin="94,331,0,0" VerticalAlignment="Top" Width="93" Click="btnEditIternary_Click" RenderTransformOrigin="3.159,-0.687"/>
+        <DataGrid x:Name="grdIteneries" ItemsSource="{Binding Iternaries}"   SelectedItem="{Binding SelectedItenary, Mode=TwoWay}"  IsReadOnly="True" SelectionMode="Single"  AreRowDetailsFrozen="True" AutoGenerateColumns="False"  HorizontalAlignment="Center" Height="207" Margin="0,90,0,0" VerticalAlignment="Top" Width="620"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Time" Binding="{Binding Time}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Iternary" Binding="{Binding IternaryName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="About" Binding="{Binding About}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}"></DataGridTextColumn>
+         
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="228,331,0,0" VerticalAlignment="Top" Height="34" Width="104" Click="btnDelete_Click" />
+
+    </Grid>
+</Window>
