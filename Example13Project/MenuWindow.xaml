@@ -1,0 +1,15 @@
+﻿<Window x:Class="Example13Project.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Example13Project"
+        mc:Ignorable="d"
+        Title="MenuWindow" Height="450" Width="800" Closing="Window_Closing">
+    <Canvas x:Name="MenuWindow1" Margin="0,0,0,-6">
+        <Button x:Name="btnCounter" Content="Sum" Height="110" Canvas.Left="136" Canvas.Top="110" Width="177" FontSize="20" Click="btnCounter_Click"/>
+        <Button x:Name="btnSumCalc" Content="Counter" Height="110" Canvas.Left="335" Canvas.Top="110" Width="169" FontSize="20" Click="btnSumCalc_Click"/>
+        <Button x:Name="btnSquare" Content="Square/Cube" Height="110" Canvas.Left="539" Canvas.Top="110" Width="162" FontSize="20" Click="btnSquare_Click"/>
+
+    </Canvas>
+</Window>
