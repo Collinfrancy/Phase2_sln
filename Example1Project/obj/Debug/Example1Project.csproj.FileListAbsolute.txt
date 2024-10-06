@@ -1,0 +1,15 @@
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\bin\Debug\Example1Project.exe.config
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\bin\Debug\Example1Project.exe
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\bin\Debug\Example1Project.pdb
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.csproj.AssemblyReference.cache
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.ListContact.resources
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.MainPageForm.resources
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.NewContact.resources
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.Properties.Resources.resources
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.SalaryPage.resources
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.SquareCalcForm.resources
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.SumCalcForm.resources
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.csproj.GenerateResource.cache
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.csproj.CoreCompileInputs.cache
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.exe
+C:\Users\2021489\source\repos\Example1ProjectSolution\Example1Project\obj\Debug\Example1Project.pdb
