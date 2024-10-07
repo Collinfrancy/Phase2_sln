@@ -1,0 +1,6 @@
+2024-10-07 17:52:10,727 [1] INFO  BankManagementSystem.Logger - Account 12345 is marked as deleted successfully
+2024-10-07 17:52:19,959 [1] INFO  BankManagementSystem.Logger - Account 1234 is marked as deleted successfully
+2024-10-07 20:13:23,689 [1] ERROR BankManagementSystem.Logger - Account Not Found , Please input valid account number
+2024-10-07 20:13:37,075 [1] ERROR BankManagementSystem.Logger - Account Not Found , Please input valid account number
+2024-10-07 20:13:46,973 [1] INFO  BankManagementSystem.Logger - Withdrawed 10 rupees Successfully from account 12345
+2024-10-07 20:15:20,632 [1] ERROR BankManagementSystem.Logger - please enter postive amount

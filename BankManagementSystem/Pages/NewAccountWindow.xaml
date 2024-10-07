@@ -1,0 +1,85 @@
+﻿<Window x:Class="BankManagementSystem.Pages.NewAccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankManagementSystem.Pages" xmlns:viewmodels="clr-namespace:BankManagementSystem.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AccountViewModel}"
+        mc:Ignorable="d"
+        Title="NewAccountWindow" Height="450" Width="800" Closing="Window_Closing">
+    <Grid MaxWidth="1200" Margin="0 10 0 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" TextAlignment="center" Text="New Account"
+                   FontSize="22" FontWeight="Bold"/>
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 10 0 0">
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+                <TextBlock Width="150" Text="Account Number" VerticalAlignment="Center"/>
+                <TextBox Style="{StaticResource MyTextBoxStyle}" Text="{Binding NewAccount.AccountNumber}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+                <TextBlock Width="150" Text="Name"/>
+                <TextBox  Style="{StaticResource MyTextBoxStyle}" Text="{Binding NewAccount.Name}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+                <TextBlock Width="150" Text="Balance" />
+                <TextBox  Style="{StaticResource MyTextBoxStyle}" Text="{Binding NewAccount.Balance}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 10" >
+                <TextBlock Width="150" Text="Type"/>
+                <RadioButton Content="current" Margin="100 0 0 0" IsChecked="{Binding NewAccount.Type, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=current}"/>
+                <RadioButton Content="savings" Margin="10 0 0 0" IsChecked="{Binding NewAccount.Type, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=savings}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+                <TextBlock Width="150" Text="Email"/>
+                <TextBox  Style="{StaticResource MyTextBoxStyle}" Text="{Binding NewAccount.Email}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+                <TextBlock Width="150" Text="Phone"/>
+                <TextBox  Style="{StaticResource MyTextBoxStyle}" Text="{Binding NewAccount.PhoneNumber}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+                <TextBlock Width="150" Text="Address"/>
+                <TextBox  Style="{StaticResource MyTextBoxStyle}" Text="{Binding NewAccount.Address}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+                <TextBlock Width="150" Text="IsActive"/>
+                <CheckBox Content="" Margin="100 0 0 0" IsChecked="{Binding NewAccount.IsActive}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+                <TextBlock Width="150" Text="Interest Percentage"/>
+                <ComboBox Margin="100 0 0 0" SelectedItem ="{Binding NewAccount.InterestPercentage ,Converter={StaticResource ComboBoxItemToStringConverter}}">
+                    <ComboBoxItem Content="5"/>
+                    <ComboBoxItem Content="10"/>
+                    <ComboBoxItem Content="15"/>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+                <TextBlock Width="150" Text="Transaction Count"/>
+                <TextBox Style="{StaticResource MyTextBoxStyle}" Margin="100 0 0 0" Text="{Binding NewAccount.TransactionCount}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="10 10 10 10">
+                <TextBlock Width="150" Text="Last Transaction Date"/>
+                <TextBox Style="{StaticResource MyTextBoxStyle}" Margin="100 0 0 0" Text="{Binding NewAccount.LastTransactionDate}"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Button HorizontalAlignment="right" Grid.Row="2" Width="200" Background="Teal" Content="Save" Foreground="White" FontWeight="bold"
+                Height="50"
+                Margin="0 10 20 20"
+                Command="{Binding CreateCommand}"/>
+
+    </Grid>
+</Window>

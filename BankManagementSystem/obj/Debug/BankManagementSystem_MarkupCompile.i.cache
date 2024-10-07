@@ -1,0 +1,20 @@
+﻿BankManagementSystem
+
+
+winexe
+C#
+.cs
+C:\Users\2021489\source\repos\New folder\BankManagementSystem\obj\Debug\
+BankManagementSystem
+none
+false
+DEBUG;TRACE
+C:\Users\2021489\source\repos\New folder\BankManagementSystem\App.xaml
+81971136617
+
+261287165408
+16-1530753321
+Pages\AccountListWindow.xaml;Pages\AccountViewWindow.xaml;Pages\DashBoardWindow.xaml;Pages\DepositWindow.xaml;Pages\EditAccountWindow.xaml;Pages\LoginPageWindow.xaml;Pages\NewAccountWindow.xaml;Pages\WithdrawWindow.xaml;
+
+True
+
