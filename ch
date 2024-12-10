@@ -9,7 +9,7 @@ Window size
  @page "/"
 
 <h1>Simple Blazor UI</h1>
-
+<div>
 <div style="max-width: 400px; margin: auto; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
 
     <h2>Select Values</h2>
@@ -65,22 +65,27 @@ List<int> numbers = new List<int>
 
    
 
-    <!-- Dropdowns -->
-  @*   @for (int i = 1; i <= 6; i++)
-    {
-        <div style="margin-bottom: 10px;">
-            <label for="dropdown@(i)">Dropdown @(i):</label>
-            <select id="dropdown@(i)" class="form-select">
-                <option value="a">a</option>
-                <option value="b">b</option>
-                <option value="c">c</option>
-                <option value="d">d</option>
-                <option value="e">e</option>
-                <option value="f">f</option>
-            </select>
-        </div>
-    }
- *@
+ 
+
+    <div  style="margin-bottom: 10px; display:flex;  flex-direction:row; gap:5px;"  >
+        <label >Language</label>
+
+        @foreach (var lang in languages)
+{
+<div>
+<InputRadio Value="lang"/>
+<label>@lang</label>
+
+</div>
+
+
+}
+ 
+
+    </div>
+
+
+
 
     <div  style="margin-bottom: 10px; display:flex;  flex-direction:column; gap:5px;"  >
         <label >KvRange</label>
@@ -92,7 +97,7 @@ List<int> numbers = new List<int>
     <div style="margin-bottom: 10px;">
         <label >mATable</label>
         <select  class="form-select" >
-            <option value="" disabled selected hidden >Select a Value</option>
+        
             <option value="a">10</option>
             <option value="b">20</option>
             <option value="c">50</option>
@@ -112,7 +117,7 @@ List<int> numbers = new List<int>
         <label>msecTable</label>
         <select @bind="SelectedNumber" class="form-select" >
 
-            <option value="" disabled selected hidden>Select a Value</option>
+          
 
             @foreach(var num in Numbers)
             {
@@ -124,28 +129,89 @@ List<int> numbers = new List<int>
 
       
     </div>
-    <div style="margin-bottom: 10px; display:flex;  flex-direction:column; gap:5px;">
+
+
+
+    <div style="margin-bottom: 10px; display:flex;  flex-direction:column; gap:15px;">
         <label>CCSNE settings</label>
-         <select  class="form-select">
-            <option value="" disabled selected hidden>Select a Value</option>
+       <div style="display:flex;  flex-direction:row; gap:5px;">
 
-            <option value="ab">Connect</option>
-            <option value="ba">Disconnect</option>
-        </select>
+        <div> 
+        <label>IsEnable</label>
+        //toggle
+        </div>
 
+         <div style="display:flex;  flex-direction:column; gap:2px;" > 
+        <label>IPAdress</label>
+        <input type="text"/>
+        </div>
+
+        <div style="display:flex;  flex-direction:column; gap:2px;" > 
+        <label>Port</label>
+        <input type="number"/>
+        </div>
+       
+        <div style="display:flex;  flex-direction:column; gap:2px;" > 
+        <label>ReconnectInterval_ms</label>
+        <input type="text"/>
+        </div>
+
+        <div style="display:flex;  flex-direction:column; gap:2px;" > 
+        <label>ReconnectInterval_ms</label>
+        <input type="number"/>
+        </div>
+
+
+          <div style="display:flex;  flex-direction:column; gap:2px;" > 
+        <label>SyncWaitTimeOut_ms</label>
+        <input type="number"/>
+        </div>
+
+          <div style="display:flex;  flex-direction:column; gap:2px;" > 
+        <label>AutoThumbnailHideTime_ms</label>
+        <input type="number"/>
+        </div>
+           
+
+       </div>
 
     </div>
-    <div style="margin-bottom: 10px;">
+
+
+     <div style="margin-bottom: 10px; display:flex;  flex-direction:column; gap:15px;">
         <label>KnobControl settings</label>
-        <select class="form-select">
-            <option value="" disabled selected hidden>Select a Value</option>
 
-            <option value="kv">Kv</option>
-            <option value="ma">mA</option>
-            <option value="msec">msec</option>
+           <div style="display:flex;  flex-direction:row; gap:5px;">
+                       <div style="display:flex;  flex-direction:column; gap:2px;" > 
+                          <label>kV</label>
+                           <input type="number"/>
+                      </div>
+                         <div style="display:flex;  flex-direction:column; gap:2px;" > 
+                          <label>mA</label>
+                           <input type="number"/>
+                      </div>
+                         <div style="display:flex;  flex-direction:column; gap:2px;" > 
+                          <label>msec</label>
+                           <input type="number"/>
+                      </div>
+      
 
-        </select>
+
+
+
+
+
+           </div> 
+
+
+       
     </div>
+
+
+
+
+
+
     <div style="margin-bottom: 10px; display:flex; flex-direction:row; gap:5px;">
 
         <label style=" padding-top:30px; padding-right:20px">Window Size</label>
@@ -180,7 +246,7 @@ List<int> numbers = new List<int>
 </div>
 
 
-
+</div>
 
 @code {
 
@@ -194,6 +260,11 @@ List<int> numbers = new List<int>
         2800, 3200, 3600, 4000, 5000, 5600, 6300, 7100, 8000, 9000
         };
     private int? SelectedNumber { get; set; }
+
+private List<string> languages=new List<string>
+{  "ja","en"};
+
+
   }
 
         
