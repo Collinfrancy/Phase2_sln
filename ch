@@ -640,3 +640,89 @@ List<int> numbers = new List<int>
 
          
 
+
+
+
+
+<div style="margin-bottom: 10px; display:flex;  flex-direction:column; gap:15px;">
+<label style="font-weight:bold;font-size:25px;padding-top:10px;">CCSNE Settings</label>
+ 
+     <div>
+<label>IsEnable:</label>
+ 
+         <div style="display:flex;flex-direction:row;gap:20px;padding-left:50px;">
+<EditForm Model="this">
+<InputRadioGroup @bind-Value="selectedenable">
+ 
+                     <div style="display:flex;flex-direction:row;gap:20px;">
+<div style="display:flex;flex-direction:row;">
+<InputRadio Value="3"></InputRadio>
+<label>YES</label>
+ 
+ 
+                         </div>
+ 
+ 
+                         <div style="display:flex;flex-direction:row;">
+<InputRadio Value="4"></InputRadio>
+<label>NO</label>
+ 
+ 
+                         </div>
+ 
+ 
+ 
+                     </div>
+ 
+ 
+                 </InputRadioGroup>
+ 
+             </EditForm>
+</div>
+ 
+     </div>
+ 
+     <div style="display:flex;  flex-direction:column; gap:10px; padding-left:30px; font-weight:bold;">
+ 
+ 
+         <div style="display:flex; flex-direction:column; gap:10px; ">
+ 
+ 
+           
+ 
+ 
+             <div style="display:flex;  flex-direction:row; gap:2px;">
+<label for="IPAdress">IP Address:&nbsp</label>
+<input id="IPAdress" @bind="MRADViewModel._SiteSetting.CCSNE.IPAdress" type="text" style="width: 160px; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; margin-left:20px;"  />
+</div>
+<div style="display:flex;  flex-direction:row; gap:2px;">
+<label for="Port">Port:&nbsp</label>
+<input type="text" id="Port" @bind="MRADViewModel._SiteSetting.CCSNE.Port" style="width: 160px; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; " />
+</div>
+<div style="display:flex;  flex-direction:row; gap:2px;">
+<label for="ReconnectInterval_ms">Reconnect Interval(ms)&nbsp</label>
+<input id="ReconnectInterval_ms" @bind="MRADViewModel._SiteSetting.CCSNE.ReconnectInterval" type="text" style="width: 160px; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555;" />
+</div>
+ 
+ 
+         </div>
+ 
+         <div style="display:flex; flex-direction:column; gap:20px; ">
+ 
+ 
+             <div style="display:flex;  flex-direction:row; gap:2px;">
+<label for="AutoThumbnailHideTime_ms">Auto Thumbnail Hide Time (ms):&nbsp</label>
+<input id="AutoThumbnailHideTime_ms" @bind="MRADViewModel._SiteSetting.CCSNE.AutoThumbnailHideTime" type="number" style="width: 160px; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555;" />
+</div>
+<div style="display:flex;  flex-direction:row; gap:2px; ">
+<label for="SyncWaitTimeOut_ms">Sync Wait Timeout (ms):&nbsp</label>
+<input id="SyncWaitTimeOut_ms" @bind="MRADViewModel._SiteSetting.CCSNE.SyncWaitTimeOut" type="number" style="width: 160px; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555;" />
+</div>
+ 
+         </div>
+ 
+ 
+ 
+     </div>
+ 
+</div>
