@@ -1,3 +1,427 @@
+
+@*  /**
+ * Copyright(c) 2024 Canon Medical Systems Corporation, All Rights Reserved.
+ *
+ * Namespace:   MRADConfigSettings
+ * Subsystem:   MRADConfigSettings
+ * Module name: MRADConfigSettings.razor
+ *
+ * Version    Date         Auther           Comment
+ * 1.0.0.0    2024/12/16   Collin Francy    Initial Version(MRAD web feasibility).
+ */ *@
+
+ @page "/"
+ @using Microsoft.AspNetCore.Components.Forms
+ @using System.ComponentModel.DataAnnotations
+@using MRAD.ViewModel
+@rendermode InteractiveServer
+@inject MainWindowViewModel MRADViewModel;
+@inject IJSRuntime JSRuntime
+
+<div style="margin-top: 20px; width: 100%; max-width: 1500px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #333; color: #f1f1f1; border-radius: 20px;">
+    <div style="padding: 20px; border-bottom: 1px solid #444;">
+        <h1 style="text-align: center; font-size:50px; color:cyan">MRAD Settings Configuration</h1>
+    </div>
+
+    <div style=" display:flex;flex-direction:row;">
+
+        <div style="width: 100%;max-width:700px; margin:10px; border: 2px solid #ccc; padding: 20px; border-radius: 10px; background-color:#505050;font-weight:bold;color:white;font-size:20px; ">
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 20%;" for="Language">Language:</label>
+                <div style="flex: 1;">
+                    <select id="Language" @bind="MRADViewModel._SiteSetting.Language" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;">
+                        <option value="en">en</option>
+                        <option value="ja">ja</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 20%;" for="KVValue">KvRange:</label>
+                <div style="flex: 1;">
+                    <input type="text" id="KVValue" placeholder="Value should be in range 40 ~ 150" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                </div>
+            </div>
+
+
+
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 20%;" for="mATable">mATable:</label>
+                <div style="flex: 1;">
+                    <select id="mATable" @bind="SelectedmaNumber" class="form-select" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;">
+                        @foreach (var num in matablenumbers)
+                        {
+                            <option value="@num">@num</option>
+
+                        }
+                    </select>
+                </div>
+            </div>
+
+
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 20%;" for="msecTable">msecTable:</label>
+                <div style="flex: 1;">
+                    <select id="msecTable" @bind="SelectedmsecNumber" class="form-select" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;">
+                        @foreach (var num in msectablevalues)
+                        {
+                            <option value="@num">@num</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <br />
+            <h3 style="color: #ffc107; margin:0">CCSNE Settings</h3>
+            <hr style="border-color: #6c757d; margin:0px" />
+            <br />
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 40%;">IsEnable:</label>
+
+
+                <div style="flex: 1;">
+                    <select id="IsEnable" @bind="MRADViewModel._SiteSetting.CCSNE.IsEnable" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;">
+                        <option>YES</option>
+                        <option>NO</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 40%;" for="IPAdress">IPAdress:</label>
+                <div style="flex: 1;">
+                    <input type="text" @bind="MRADViewModel._SiteSetting.CCSNE.IPAdress" id="IPAdress" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                </div>
+            </div>
+
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 40%;" for="Port">Port:</label>
+                <div style="flex: 1;">
+                    <input type="text" @bind="MRADViewModel._SiteSetting.CCSNE.Port" id="Port" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                </div>
+            </div>
+
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 40%;" for="ReconnectInterval_ms">Reconnect Interval:</label>
+                <div style="flex: 1;">
+                    <input type="text" @bind="MRADViewModel._SiteSetting.CCSNE.ReconnectInterval" id="ReconnectInterval_ms" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                </div>
+            </div>
+
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 40%;" for="AutoThumbnailHideTime_ms">Auto Thumbnail Hide Time:</label>
+                <div style="flex: 1;">
+                    <input type="number" @bind="MRADViewModel._SiteSetting.CCSNE.AutoThumbnailHideTime" id="AutoThumbnailHideTime_ms" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                </div>
+            </div>
+
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 40%;" for="SyncWaitTimeOut_ms">Sync Wait TimeOut:</label>
+                <div style="flex: 1;">
+                    <input type="number" @bind="MRADViewModel._SiteSetting.CCSNE.SyncWaitTimeOut" id="SyncWaitTimeOut_ms" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                </div>
+            </div>
+
+            <br />
+            <h3 style="color: #ffc107; margin:0">Window Settings</h3>
+            <hr style="border-color: #6c757d; margin:0px" />
+            <br />
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 10%;" for="Width">Width:</label>
+                <div style="flex: 1;">
+                    <input type="number" @bind="MRADViewModel._SystemSetting.WindowSize.Width" id="Width" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                </div>
+                <label style="margin-right: 10px; width: 10%;" for="Width">Height:</label>
+                <div style="flex: 1;">
+                    <input type="number" @bind="MRADViewModel._SystemSetting.WindowSize.Height" id="Width" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                </div>
+            </div>
+
+            <br />
+            <h3 style="color: #ffc107; margin:0">Knob control step degree</h3>
+            <hr style="border-color: #6c757d; margin:0px" />
+            <br />
+            <div style="margin-bottom: 10px; display: flex;flex-direction:column; align-items: center;">
+                <div style="display:flex; flex-direction:row">
+                    <div style="display:flex; flex-direction:column">
+                        <label style="margin-right: 10px; width: 10%;" for="kV">kV</label>
+                        <div style="flex: 1;">
+                            <input type="number" @bind="MRADViewModel._SiteSetting.KnobControlStepValue.StepDegree_kV" id="kV" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" oninput="validateStepDegree(this)" />
+                        </div>
+                    </div>
+                    <div style="display:flex; flex-direction:column">
+                        <label style="margin-right: 10px; width: 10%;" for="mA">mA</label>
+                        <div style="flex: 1;">
+                            <input type="number" @bind="MRADViewModel._SiteSetting.KnobControlStepValue.StepDegree_mA" id="mA" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                        </div>
+                    </div>
+                    <div style="display:flex; flex-direction:column">
+                        <label style="margin-right: 10px; width: 10%;" for="msec">msec</label>
+                        <div style="flex: 1;">
+                            <input type="number" @bind="MRADViewModel._SiteSetting.KnobControlStepValue.StepDegree_sec" id="msec" style="width: 80%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                        </div>
+                    </div>
+                </div>
+                <span id="validateStepDegreespace"></span>
+
+            </div>
+        </div>
+
+        <div style="width: 100%;max-width:700px; margin:10px; border: 2px solid #ccc; padding: 20px; border-radius: 10px; background-color:#505050;font-weight:bold;color:white;font-size:20px; ">
+
+  @*           <div style="margin-bottom: 10px; display: flex;fill; align-items: center;">
+                <label style="margin-right: 10px; width: 40%;" for="TubeCount">Tube Count:</label>
+                
+                    
+
+                <input type="text" style="width:150px;background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;margin-right:40px;padding:10px;" id="TubeCount" 
+                @bind="MRADViewModel._SystemSetting.TubeCount" 
+                oninput="validateTubeCount(this)"  />
+
+                <span id="validateTubeCountspace"></span>
+
+
+            </div> *@
+
+            <div style="margin-bottom: 10px;">
+                <label>TubeNumber</label>
+
+                <div style="display:flex;flex-direction:row;gap:20px;padding-left:50px;">
+                    <EditForm Model="this">
+                        <InputRadioGroup @bind-Value="selectedvalue">
+
+                            <div style="display:flex;flex-direction:row;gap:20px;">
+                                <div style="display:flex;flex-direction:row;">
+                                    <InputRadio Value="1"></InputRadio>
+                                    <label>1</label>
+
+                                </div>
+
+                                <div style="display:flex;flex-direction:row;">
+                                    <InputRadio Value="2"></InputRadio>
+                                    <label>2</label>
+
+
+                                </div>
+                            </div>
+
+                        </InputRadioGroup>
+                    </EditForm>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 40%;" for="DebugLog">Debug Log:</label>
+                <div style="flex: 1;">
+                    <div style="flex: 1;">
+                        <select id="DebugLog" @bind="MRADViewModel._SystemSetting.DebugLog" style="width: 90%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;margin-right:40px;">
+                            <option>ON</option>
+                            <option>OFF</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div style="margin-bottom: 10px; display: flex; align-items: center;">
+                <label style="margin-right: 10px; width: 40%;" for="AutoDeleteLogDays">Auto Delete Log Days:</label>
+                <div style="flex: 1;">
+                    <input type="text" id="AutoDeleteLogDays" @bind="MRADViewModel._SystemSetting.AutoDeleteLogDays" style="width: 85%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                </div>
+            </div>
+
+
+            <br />
+            <h3 style="color: #ffc107; margin:0">TechInfo</h3>
+            <hr style="border-color: #6c757d; margin:0px" />
+            <br />
+            <div style="display:flex;flex-direction:column; gap:5px;">
+                @foreach (var tech in MRADViewModel._SystemSetting.TechData.Techs)
+                {
+                    <div style="display:flex;flex-direction:row; gap:20px;">
+                        <label for="TechName" style="padding-top:10px;">Name:</label>
+                        <input disabled type="text" id="TechName" @bind="tech.Name" style="width: 30%; padding: 10px; background-color: #505050; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+
+                        <div style="display:flex;flex-direction:row;">
+                            <label for="XrayTubeNumber" style="padding-top:10px" ;>TubeNo:&nbsp;</label>
+                            <div style="flex: 1;">
+                                <select id="XrayTubeNumber" @bind="tech.XrayTubeNumber" style="width: 90%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;margin-right:40px;">
+                                    <option>1</option>
+                                    <option>2</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display:flex;flex-direction:row;">
+                            <label for="AECChannel" style="padding-top:10px" ;>AECChannel:&nbsp;&nbsp;</label>
+                            <div style="flex: 1;">
+                                <select id="AECChannel" @bind="tech.AECChannel" style="width: 90%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;margin-right:40px;">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+
+            <br />
+            <h3 style="color: #ffc107; margin:0">DisplayInfo</h3>
+            <hr style="border-color: #6c757d; margin:0px" />
+            <br />
+            <div>
+                @foreach (var tube in MRADViewModel._SystemSetting.TubeInfo.Tubes)
+                {
+                    <div style="margin-bottom: 15px; padding: 10px; border: 1px solid #555; border-radius: 5px;">
+
+@* 
+                        <div style="display: grid; grid-template-columns: 1fr 2fr; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <label for="TubeNumber">Tube Number
+                            <input type="radio" id="TubeNumber" @bind="tube.TubeNumber" style="width: 100%; padding: 10px; background-color: #505050; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />On
+                            </label>
+                            <label for="TubeNumber">
+                               
+                                <input type="radio" id="TubeNumber" @bind="tube.TubeNumber" style="width: 100%; padding: 10px; background-color: #505050; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />OFF
+                            </label>
+                        </div> *@
+              @*   <div style="margin-bottom: 10px;">
+                            <label>TubeNumber</label>
+
+                    <div style="display:flex;flex-direction:row;gap:20px;padding-left:50px;">
+                   <EditForm Model="this">
+                    <InputRadioGroup @bind-Value="selectedvalue">
+
+                                <div style="display:flex;flex-direction:row;gap:20px;">
+                                    <div style="display:flex;flex-direction:row;">
+                                        <InputRadio Value="1"></InputRadio>
+                                        <label>1</label>
+
+                                    </div>
+
+                                    <div style="display:flex;flex-direction:row;">
+                                        <InputRadio Value="2"></InputRadio>
+                                        <label>2</label>
+
+
+                                    </div>
+                     </div>
+
+                   </InputRadioGroup>
+                   </EditForm>
+                    </div>      
+                </div>
+
+ *@
+                        <div style="margin-bottom: 10px;display:flex;flex-direction:row;gap:50px;">
+                            <label>Tube Number:</label>
+                            <input type="text" disabled @bind="tube.TubeNumber" style="width: 30%; padding: 10px; background-color: #505050; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;margin-left:8%;" />
+                        
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 2fr; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <label for="StartPositionX">Start Position (X):</label>
+                            <input type="number" id="StartPositionX" @bind="tube.StartPositionX" style="width: 100%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 2fr; align-items: center; gap: 10px;">
+                            <label for="StartPositionY">Start Position (Y):</label>
+                            <input type="number" id="StartPositionY" @bind="tube.StartPositionY" style="width: 100%; padding: 10px; background-color: #444; color: #f1f1f1; border: 1px solid #555; border-radius: 5px;" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div style="text-align: center;">
+        <button style="padding: 10px ; font-size: 15px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;" @onclick="MRADViewModel.SaveMradSettings">Save Settings</button>
+        <button style="padding: 10px ; font-size: 15px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;" @onclick="MRADViewModel.ResetMradSettings">Reset Settings</button>
+    </div>
+
+
+</div>
+
+@code {
+
+
+
+
+
+    private List<int> msectablevalues { get; set; } = new List<int>
+        {
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 25, 28,
+        32, 36, 40, 45, 50, 56, 63, 71, 80, 90, 100, 110, 125, 140, 160,
+        180, 200, 220, 250, 280, 320, 360, 400, 450, 500, 560, 630, 710,
+        800, 900, 1000, 1100, 1200, 1400, 1600, 1800, 2000, 2200, 2500,
+        2800, 3200, 3600, 4000, 5000, 5600, 6300, 7100, 8000, 9000
+        };
+    private int? SelectedmsecNumber { get; set; }
+
+    private List<int> matablenumbers { get; set; } = new List<int>
+    {
+
+        10,20,50,100,160,200,250,320,400,500,630,200,1000
+
+
+
+    };
+    private int? SelectedmaNumber { get; set; }
+
+    private int selectedvalue = 1;
+    private string selectedlang = "ja";
+    private string selectedenable = "NO";
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 the UI should contain the below cases:
 KvRange
 mATable
