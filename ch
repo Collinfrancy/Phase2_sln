@@ -1,3 +1,36 @@
+private async Task ZipAndDownload()
+    {
+        string folderPath = @"C:\YourFolder";
+        string zipPath = @"C:\YourFolder.zip";
+
+        // Call the method to create the zip file
+        CreateZip(folderPath, zipPath);
+
+        // Trigger download using JavaScript
+        await JS.InvokeVoidAsync("downloadFile", zipPath, "YourFolder.zip");
+    }
+
+    private void CreateZip(string folderPath, string zipPath)
+    {
+        if (Directory.Exists(folderPath))
+        {
+            if (File.Exists(zipPath))
+            {
+                File.Delete(zipPath);
+            }
+            ZipFile.CreateFromDirectory(folderPath, zipPath);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
 @*  /**
  * Copyright(c) 2024 Canon Medical Systems Corporation, All Rights Reserved.
