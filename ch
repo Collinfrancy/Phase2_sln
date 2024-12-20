@@ -1,3 +1,60 @@
+
+private async Task CompressFolder()
+    {
+        try
+        {
+            // Define folder and ZIP paths
+            string folderPath = @"C:\YourFolderPath"; // Replace with the folder you want to compress
+            string zipPath = Path.Combine(Path.GetTempPath(), "CompressedFolder.zip");
+
+            // Delete existing ZIP file if it exists
+            if (File.Exists(zipPath))
+            {
+                File.Delete(zipPath);
+            }
+
+            // Compress the folder into a ZIP file
+            ZipFile.CreateFromDirectory(folderPath, zipPath);
+
+            // Read the ZIP file bytes
+            var zipBytes = await File.ReadAllBytesAsync(zipPath);
+
+            // Initiate file download
+            await TriggerFileDownload("CompressedFolder.zip", zipBytes);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+
+    private async Task TriggerFileDownload(string fileName, byte[] fileContent)
+    {
+        // JavaScript Interop for downloading the file
+        await using var fileStream = new MemoryStream(fileContent);
+        var url = URL.CreateObjectURL(fileStream, "application/zip");
+
+        // Create a temporary download link and trigger it
+        var jsCode = $@"
+            var link = document.createElement('a');
+            link.href = '{url}';
+            link.download = '{fileName}';
+            link.click();
+            URL.revokeObjectURL(link.href);
+        ";
+        await JSRuntime.InvokeVoidAsync("eval", jsCode);
+    }
+
+
+
+
+
+
+
+
+
+
+
 private async Task ZipAndDownload()
     {
         string folderPath = @"C:\YourFolder";
