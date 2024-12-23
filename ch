@@ -47,7 +47,14 @@
 
 
 
-
+<script>
+    function downloadFile(content, fileName) {
+        const link = document.createElement('a');
+        link.href = content;
+        link.download = fileName;
+        link.click();
+    }
+</script>
 
 
 
