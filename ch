@@ -1,3 +1,61 @@
+
+@page "/download-zip"
+@using System.IO.Compression
+@using Microsoft.AspNetCore.Components.Forms
+@inject IWebHostEnvironment Environment
+
+<h3>Download Folder as ZIP</h3>
+
+<button @onclick="DownloadZipFile">Download ZIP</button>
+
+@code {
+    private async Task DownloadZipFile()
+    {
+        var folderPath = Path.Combine(Environment.WebRootPath, "YourFolder");
+        var zipFilePath = Path.Combine(Environment.WebRootPath, "YourFolder.zip");
+
+        // Compress the folder into a ZIP file
+        if (Directory.Exists(folderPath))
+        {
+            if (System.IO.File.Exists(zipFilePath))
+            {
+                System.IO.File.Delete(zipFilePath); // Remove existing ZIP file
+            }
+
+            ZipFile.CreateFromDirectory(folderPath, zipFilePath);
+
+            // Trigger file download
+            var fileBytes = await System.IO.File.ReadAllBytesAsync(zipFilePath);
+            var fileName = "YourFolder.zip";
+
+            await using var stream = new MemoryStream(fileBytes);
+            var fileStream = new StreamContent(stream);
+            var contentType = "application/zip";
+
+            var fileDownloadName = $"attachment; filename={fileName}";
+
+            await BlazorDownloadFile.DownloadFileAsync(fileStream, contentType, fileDownloadName);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @page "/zipfolder"
 @using System.IO.Compression
 
