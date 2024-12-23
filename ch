@@ -1,3 +1,64 @@
+@page "/zipfolder"
+@using System.IO.Compression
+
+<h3>Compress Folder to Zip</h3>
+
+<button @onclick="CompressFolderToZip">Compress Folder</button>
+
+@if (!string.IsNullOrEmpty(DownloadLink))
+{
+    <a href="@DownloadLink" download="CompressedFolder.zip">Download Zip File</a>
+}
+
+@code {
+    private string? DownloadLink;
+
+    private async Task CompressFolderToZip()
+    {
+        string folderPath = "wwwroot/FolderToCompress"; // Path to the folder to compress
+        string zipPath = "wwwroot/CompressedFolder.zip"; // Path to save the zip file
+
+        try
+        {
+            if (Directory.Exists(folderPath))
+            {
+                // Delete the old zip file if it exists
+                if (File.Exists(zipPath))
+                {
+                    File.Delete(zipPath);
+                }
+
+                // Compress the folder
+                ZipFile.CreateFromDirectory(folderPath, zipPath);
+
+                // Generate a download link
+                DownloadLink = "/CompressedFolder.zip";
+            }
+            else
+            {
+                Console.WriteLine("Folder does not exist.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 private async Task CompressFolder()
     {
