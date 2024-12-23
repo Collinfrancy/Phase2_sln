@@ -1,3 +1,60 @@
+<button @onclick="CompressAndDownload">Compress and Download</button>
+
+@code {
+    private async Task CompressAndDownload()
+    {
+        string folderPath = "C:/MRAD/MRAD/log";
+        string zipPath = Path.Combine(Path.GetTempPath(), "CompressedLog.zip");
+
+        try
+        {
+            if (Directory.Exists(folderPath))
+            {
+                if (File.Exists(zipPath))
+                {
+                    File.Delete(zipPath);
+                }
+
+                // Compress the folder to a zip file
+                ZipFile.CreateFromDirectory(folderPath, zipPath);
+
+                // Read the zip file and prepare it for download
+                var fileBytes = await File.ReadAllBytesAsync(zipPath);
+                var base64File = Convert.ToBase64String(fileBytes);
+
+                // Trigger download
+                await TriggerFileDownload("CompressedLog.zip", base64File);
+            }
+            else
+            {
+                Console.WriteLine("Folder does not exist.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+
+    private async Task TriggerFileDownload(string fileName, string base64Content)
+    {
+        var content = $"data:application/zip;base64,{base64Content}";
+        var jsRuntime = (IJSRuntime)ScopedServices.GetService(typeof(IJSRuntime));
+
+        await jsRuntime.InvokeVoidAsync("downloadFile", content, fileName);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
