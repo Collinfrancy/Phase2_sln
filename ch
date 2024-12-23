@@ -1,6 +1,69 @@
 @page "/zipfolder"
 @using System.IO.Compression
 
+<h3>Compress and Download Folder</h3>
+
+<button @onclick="CompressAndDownload">Compress and Download</button>
+
+@code {
+    private async Task CompressAndDownload()
+    {
+        string folderPath = "wwwroot/FolderToCompress"; // Path to the folder to compress
+        string zipPath = "wwwroot/CompressedFolder.zip"; // Path to save the zip file
+
+        try
+        {
+            if (Directory.Exists(folderPath))
+            {
+                // Delete the old zip file if it exists
+                if (File.Exists(zipPath))
+                {
+                    File.Delete(zipPath);
+                }
+
+                // Compress the folder
+                ZipFile.CreateFromDirectory(folderPath, zipPath);
+
+                // Trigger the download
+                var uri = new Uri(NavigationManager.BaseUri + "CompressedFolder.zip");
+                NavigationManager.NavigateTo(uri.ToString(), true);
+            }
+            else
+            {
+                Console.WriteLine("Folder does not exist.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+    
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@page "/zipfolder"
+@using System.IO.Compression
+
 <h3>Compress Folder to Zip</h3>
 
 <button @onclick="CompressFolderToZip">Compress Folder</button>
