@@ -1,6 +1,72 @@
 
 
 
+            <button @onclick="CompressFolderToZip">Compress Folder</button>
+
+            @if (!string.IsNullOrEmpty(DownloadLink))
+            {
+                <a href="@DownloadLink" download="CompressedLog.zip">Download Zip File</a>
+            }
+
+
+
+
+    private string? DownloadLink;
+
+    private async Task CompressFolderToZip()
+    {
+        string folderPath = "C:/MRAD/MRAD/log";
+        string zipPath = "E:/CompressedLog.zip";
+
+        try
+        {
+            if (Directory.Exists(folderPath))
+            {
+               
+                if (File.Exists(zipPath))
+                {
+                    File.Delete(zipPath);
+                }
+
+               
+                ZipFile.CreateFromDirectory(folderPath, zipPath);
+
+                // Generate a download link
+                DownloadLink = "CompressedLog.zip";
+            }
+            else
+            {
+                Console.WriteLine("Folder does not exist.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
