@@ -1,3 +1,62 @@
+
+@page "/download-log"
+@using System.IO
+@inject IWebHostEnvironment Environment
+@inject IJSRuntime JSRuntime
+
+<h3>Download Today's Log</h3>
+<button @onclick="DownloadTodayLog">Download Today's Log</button>
+
+<p>@Message</p>
+
+@code {
+    private string Message;
+
+    private async Task DownloadTodayLog()
+    {
+        // Get the current date in the required format
+        var today = DateTime.Now.ToString("yyyyMMdd");
+        var fileName = $"{today}_MRAD.log";
+
+        // Path to the logs folder
+        var folderPath = Path.Combine(Environment.WebRootPath, "logs");
+        var filePath = Path.Combine(folderPath, fileName);
+
+        if (File.Exists(filePath))
+        {
+            try
+            {
+                // Read the file content
+                var fileBytes = await File.ReadAllBytesAsync(filePath);
+
+                // Encode the file to Base64 for the browser
+                var base64Data = Convert.ToBase64String(fileBytes);
+                var url = $"data:application/log;base64,{base64Data}";
+
+                // Trigger file download using JavaScript
+                await JSRuntime.InvokeVoidAsync("downloadFile", url, fileName);
+
+                Message = "Download successful!";
+            }
+            catch (Exception ex)
+            {
+                Message = $"Error: {ex.Message}";
+            }
+        }
+        else
+        {
+            Message = "Log file not found for today.";
+        }
+    }
+}
+
+
+
+
+
+
+
+
 <button @onclick="CompressAndDownload">Compress and Download</button>
 
 @code {
